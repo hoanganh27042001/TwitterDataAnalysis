@@ -15,6 +15,7 @@ This repository contains a series of scripts used to analyze Twitter data.
 To run this project: 
 - first clone it to your computer.
 - open file fetch_data.py and insert your ‘Consumer Key’, ‘Consumer Secret’, ‘Access token’ and ‘Access Token Secret’
+- create new folder ./data and ./image under project directory
 - cd to the project directory
 ### 1. Fetch data from Twitter utilizing the twitter API
 *Note: Your fetched data will be stored in folder ./data in form of json and csv file for each command*
