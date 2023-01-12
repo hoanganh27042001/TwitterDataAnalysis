@@ -122,8 +122,8 @@ def main():
     tweet_list, tw_list_positive, tw_list_negative, tw_neutral = sentiment_analysis(tweet_list)
     show_tweets_sentiment(tweet_list)
     create_wordcloud(tweet_list["Tweet"].values)
-    create_wordcloud(tw_list_positive["Tweet"].values)
-    create_wordcloud(tw_list_negative["Tweet"].values)
+    create_wordcloud(tw_list_positive["Tweet"].values, "positive")
+    create_wordcloud(tw_list_negative["Tweet"].values, "negative")
 
     columns = tweet_list.columns[1:]
     # Calculating tweet's length and word count
