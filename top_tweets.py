@@ -1,7 +1,6 @@
 '''
 top-tweets.py
 Computes summary statistics about top users, hashtags for a given keyword
-@p_barbera
 Usage:
 ## find 10 most active users for this event
 python top_tweets.py -v users -f data/tweets.json -k 10
