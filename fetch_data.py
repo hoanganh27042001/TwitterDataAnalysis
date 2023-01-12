@@ -28,10 +28,10 @@ parser.add_argument('--limit', default=100, type=int,
 args = parser.parse_args()
 
 # keys and tokens from the Twitter Dev Console
-consumer_key = "nCxLNGXz9BCBQvPVmTKOqg0lR"
-consumer_secret = "mAhwyf69FZTbWWjncXBRnvC9fMONxUGDemIeDw5kVcF83j6ugZ"
-access_token = "1584913200440557568-EMkUQWBkSF5WucI7hRXQDOXrR1ue98"
-access_token_secret = "eSoyWLp62fXQpia8wzCnP39gnTqfKY4wbhNnXompbDpqY"
+consumer_key = ################################
+consumer_secret = ################################
+access_token = ###############################
+access_token_secret = #############################
 
 # attempt authentication
 try:
