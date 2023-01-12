@@ -1,6 +1,6 @@
 # Twitter-Data-Analysis
 
-This repository contains a series of scripts I often use to analyze Twitter data.
+This repository contains a series of scripts used to analyze Twitter data.
 
 ## Set up
 **Authentication**: In order to fetch tweets through Twitter API, one needs create a developer account on the [Twitter apps site](https://apps.twitter.com/). Then follow these steps for the same:
