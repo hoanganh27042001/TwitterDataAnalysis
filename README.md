@@ -17,6 +17,19 @@ To run this project:
 - open file fetch_data.py and insert your ‘Consumer Key’, ‘Consumer Secret’, ‘Access token’ and ‘Access Token Secret’
 - create new folder ./data and ./image under project directory
 - cd to the project directory
+- intall requirements: pip install -r requirements.txt
+
+The project structure:
+
+    .
+    ├── data                            # folder contains fetched_data, analyzed data in form of .csv and .json file
+    ├── image                           # folder contains ouput image (e.g. pie chart, word cloud) 
+    ├── fetch_data.py                   # module to obtain data from twitter api
+    ├── text_processing.py              # module to perform text processing for each tweet
+    ├── top_tweets.py                   # module to get top hashtags and users
+    ├── TwitterSentimentAnalysis.py     # module to derive the sentiment of each tweet
+    └── README.md
+
 ### 1. Fetch data from Twitter utilizing the twitter API
 *Note: Your fetched data will be stored in folder ./data in form of json and csv file for each command*
 
