@@ -28,10 +28,10 @@ parser.add_argument('--limit', default=100, type=int,
 args = parser.parse_args()
 
 # keys and tokens from the Twitter Dev Console
-consumer_key = "nCxLNGXz9BCBQvPVmTKOqg0lR"
-consumer_secret = "mAhwyf69FZTbWWjncXBRnvC9fMONxUGDemIeDw5kVcF83j6ugZ"
-access_token = "1584913200440557568-EMkUQWBkSF5WucI7hRXQDOXrR1ue98"
-access_token_secret = "eSoyWLp62fXQpia8wzCnP39gnTqfKY4wbhNnXompbDpqY"
+consumer_key = "############################"
+consumer_secret = "############################"
+access_token = "############################"
+access_token_secret = "############################"
 
 # attempt authentication
 try:
@@ -74,11 +74,11 @@ def get_tweets(query, count=10):
         # empty dictionary to store required params of a tweet
 
     df = pd.DataFrame(data, columns = columns)
-    df.to_csv('dataset.csv', index=False, encoding='utf-8')
+    df.to_csv('data/dataset.csv', index=False, encoding='utf-8')
 
     data = json.dumps(tweets, indent=4)
     # Writing to sample.json
-    with open("tweets.json", "w") as outfile:
+    with open("data/tweets.json", "w") as outfile:
         outfile.write(data)
 
     print(f'Tweets about {query} is collected successfully. Check result at output file dataset.csv and tweets.json')
@@ -96,16 +96,16 @@ def get_followers(**kwargs):
         results.append(follower._json)
 
     df = pd.DataFrame(data, columns=columns)
-    df.to_csv(f"{kwargs['userid']}_{kwargs['username']}_followers.csv")
+    df.to_csv(f"data/{kwargs['userid']}_{kwargs['username']}_followers.csv")
 
     results = json.dumps(results, indent=4)
     # Writing to sample.json
-    with open(f"{kwargs['userid']}_{kwargs['username']}_followers.json", "w") as outfile:
+    with open(f"data/{kwargs['userid']}_{kwargs['username']}_followers.json", "w") as outfile:
         outfile.write(results)
 
     print(f"Get followers of given user successfully. \
-    Check result at {kwargs['userid']}_{kwargs['username']}_followers.csv and \
-    {kwargs['userid']}_{kwargs['username']}_followers.json")
+    Check result at data/{kwargs['userid']}_{kwargs['username']}_followers.csv and \
+    data/{kwargs['userid']}_{kwargs['username']}_followers.json")
 
     print(df)
 
@@ -114,23 +114,23 @@ def get_user_tweets(**kwargs):
     data = []
     results = []
     columns = ['Created at', 'Tweet']
-    print('Homeline of user: ', kwargs['username'])
+    print(f"Homeline of user: {kwargs['userid']}_{kwargs['username']}")
     for tweet in tweets:
         print("***Create at: ", tweet.created_at)
         print(tweet.text.encode('utf-8'))
         data.append([tweet.created_at, tweet.text])
         results.append(tweet._json)
     df = pd.DataFrame(data, columns = columns)
-    df.to_csv(f"{kwargs['userid']}_{kwargs['username']}_tweets.csv", index=False, encoding='utf-8')
+    df.to_csv(f"data/{kwargs['userid']}_{kwargs['username']}_tweets.csv", index=False, encoding='utf-8')
 
     results = json.dumps(results, indent=4)
     # Writing to sample.json
-    with open(f"{kwargs['userid']}_{kwargs['username']}_followers.json", "w") as outfile:
+    with open(f"data/{kwargs['userid']}_{kwargs['username']}_followers.json", "w") as outfile:
         outfile.write(results)
 
     print(f"Get tweets timeline of given user successfully. \
-        Check result at {kwargs['userid']}_{kwargs['username']}_tweets.csv and \
-        {kwargs['userid']}_{kwargs['username']}_tweets.json")
+        Check result at data/{kwargs['userid']}_{kwargs['username']}_tweets.csv and \
+        data/{kwargs['userid']}_{kwargs['username']}_tweets.json")
 
 if args.keyword is not None:
     get_tweets(args.keyword, args.limit)

@@ -4,9 +4,9 @@ Computes summary statistics about top users, hashtags for a given keyword
 @p_barbera
 Usage:
 ## find 10 most active users for this event
-python top_tweets.py -v users -f tweets.json -k 10
+python top_tweets.py -v users -f data/tweets.json -k 10
 ## find 10 most used hashtags for this event
-python top_tweets.py -v hashtags -f tweets.json -k 10
+python top_tweets.py -v hashtags -f data/tweets.json -k 10
 '''
 import argparse
 import json

@@ -103,15 +103,15 @@ def create_wordcloud(text, name=''):
                  stopwords=stopwords,
                  repeat=True)
   wc.generate(str(text))
-  wc.to_file("wc_{}.png".format(name))
+  wc.to_file("image/wc_{}.png".format(name))
   print(f"Word Cloud for {name} tweets saved successfully")
-  path="wc_{}.png".format(name)
+  path="image/wc_{}.png".format(name)
   (Image.open(path)).show()
 
 def main():
     # api = TwitterClient()
     # tweets = api.get_tweets(query='World Cup', count=500)
-    tweets = pd.read_csv('dataset')
+    tweets = pd.read_csv('data/dataset.csv')
 
     print('Number of tweets fetched: ', len(tweets))
     tweet_list = tweets['Tweet']
@@ -148,8 +148,8 @@ def main():
     n3_bigrams = get_top_n_gram(tweet_list['Tweet'], (3, 3), 10)
 
     df = pd.DataFrame(tweet_list)
-    df.to_csv(f'sentiment_analysis.csv')
-    print('Sentiment analysis results saved in sentiment_analysis.csv')
+    df.to_csv(f'data/sentiment_analysis.csv')
+    print('Sentiment analysis results saved in data/sentiment_analysis.csv')
 
 if __name__ == "__main__":
     # calling main function
