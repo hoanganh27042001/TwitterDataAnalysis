@@ -28,6 +28,7 @@ The project structure:
     ├── text_processing.py              # module to perform text processing for each tweet
     ├── top_tweets.py                   # module to get top hashtags and users
     ├── TwitterSentimentAnalysis.py     # module to derive the sentiment of each tweet
+    ├── TwitterAnalysis.ipynb           # notebook show the code and the result for each step.
     └── README.md
 
 ### 1. Fetch data from Twitter utilizing the twitter API
