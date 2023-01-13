@@ -143,9 +143,11 @@ def main():
     tweet_list['stemmed'] = tw_list_copy['nonstop'].apply(lambda x: stemming(x))
 
     count_vector_df = countVectorizer(tweet_list)
-    n2_bigrams = get_top_n_gram(tweet_list['Tweet'], (2, 2), 10)
-
-    n3_bigrams = get_top_n_gram(tweet_list['Tweet'], (3, 3), 10)
+    # get the most used word
+    # get the most 2-gram words
+    get_top_n_gram(tweet_list['Tweet'], (2, 2), 10)
+    # get the most 3-gram words
+    get_top_n_gram(tweet_list['Tweet'], (3, 3), 10)
 
     df = pd.DataFrame(tweet_list)
     df.to_csv(f'data/sentiment_analysis.csv')
