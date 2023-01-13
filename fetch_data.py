@@ -28,10 +28,10 @@ parser.add_argument('--limit', default=100, type=int,
 args = parser.parse_args()
 
 # keys and tokens from the Twitter Dev Console
-consumer_key = "############################"
-consumer_secret = "############################"
-access_token = "############################"
-access_token_secret = "############################"
+consumer_key = "###################################"
+consumer_secret = "###################################"
+access_token = "###################################"
+access_token_secret = "###################################"
 
 # attempt authentication
 try:
@@ -117,7 +117,7 @@ def get_user_tweets(**kwargs):
     print(f"Homeline of user: {kwargs['userid']}_{kwargs['username']}")
     for tweet in tweets:
         print("***Create at: ", tweet.created_at)
-        print(tweet.text.encode('utf-8'))
+        print(tweet.text)
         data.append([tweet.created_at, tweet.text])
         results.append(tweet._json)
     df = pd.DataFrame(data, columns = columns)

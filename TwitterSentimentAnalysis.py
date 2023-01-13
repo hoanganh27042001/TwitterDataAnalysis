@@ -68,17 +68,18 @@ def show_tweets_sentiment(tw_list):
     print('------------------------------------------------------------------------------')
     print('Positive tweets: ')
     for text in tw_list_postive['Tweet'][:5]:
-        print(text.encode('utf-8'))
+        print(text)
 
     print('------------------------------------------------------------------------------')
     print('Negative tweets: ')
     for text in tw_list_negative['Tweet'][:5]:
-        print(text.encode('utf-8'))
+        print(text)
 
     print('------------------------------------------------------------------------------')
     print('Neutral tweets: ')
     for text in tw_list_neutral['Tweet'][:5]:
-        print(text.encode('utf-8'))
+        print(text)
+    print("\n")
     create_pie_chart(positive, negative, neutral)
 
 def create_pie_chart(positive, negative, neutral):
@@ -92,6 +93,7 @@ def create_pie_chart(positive, negative, neutral):
     plt.legend(labels)
     plt.title("Sentiment Analysis Result")
     plt.axis('equal')
+    plt.savefig('image/piechart.png')
     plt.show()
 
 # Function to Create Wordcloud
@@ -121,14 +123,14 @@ def main():
     tweet_list = clean_text(tweet_list)
     tweet_list, tw_list_positive, tw_list_negative, tw_neutral = sentiment_analysis(tweet_list)
     show_tweets_sentiment(tweet_list)
-    create_wordcloud(tweet_list["Tweet"].values)
-    create_wordcloud(tw_list_positive["Tweet"].values, "positive")
-    create_wordcloud(tw_list_negative["Tweet"].values, "negative")
+    create_wordcloud(tweet_list["cleaned_text"].values)
+    create_wordcloud(tw_list_positive["cleaned_text"].values, "positive")
+    create_wordcloud(tw_list_negative["cleaned_text"].values, "negative")
 
     columns = tweet_list.columns[1:]
     # Calculating tweet's length and word count
     tweet_list['text_len'] = tweet_list['Tweet'].astype(str).apply(len)
-    tweet_list['text_word_count'] = tweet_list['Tweet'].apply(lambda x: len(str(x).split()))
+    tweet_list['text_word_count'] = tweet_list['cleaned_text'].apply(lambda x: len(str(x).split()))
 
     print('\nAverage length of tweet for each sentiment:')
     print(round(pd.DataFrame(tweet_list.groupby('sentiment').text_len.mean()), 2))
@@ -137,17 +139,18 @@ def main():
     print(round(pd.DataFrame(tweet_list.groupby('sentiment').text_word_count.mean()), 2))
 
     tw_list_copy = tweet_list.copy()
-    tw_list_copy['punct'] = tw_list_copy['Tweet'].apply(lambda x: remove_punct(x))
+    tw_list_copy['punct'] = tw_list_copy['cleaned_text'].apply(lambda x: remove_punct(x))
     tw_list_copy['tokenized'] = tw_list_copy['punct'].apply(lambda x: tokenization(x.lower()))
     tw_list_copy['nonstop'] = tw_list_copy['tokenized'].apply(lambda x: remove_stopwords(x))
     tweet_list['stemmed'] = tw_list_copy['nonstop'].apply(lambda x: stemming(x))
 
     count_vector_df = countVectorizer(tweet_list)
     # get the most used word
+    get_top_n_gram(tweet_list['cleaned_text'], (1, 1), 10)
     # get the most 2-gram words
-    get_top_n_gram(tweet_list['Tweet'], (2, 2), 10)
+    get_top_n_gram(tweet_list['cleaned_text'], (2, 2), 10)
     # get the most 3-gram words
-    get_top_n_gram(tweet_list['Tweet'], (3, 3), 10)
+    get_top_n_gram(tweet_list['cleaned_text'], (3, 3), 10)
 
     df = pd.DataFrame(tweet_list)
     df.to_csv(f'data/sentiment_analysis.csv')
